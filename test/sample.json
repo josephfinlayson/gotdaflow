@@ -1,0 +1,23 @@
+{
+	"first_name" : "Ofir",
+	"last_name" : "Weinstock",
+	"personality" :
+	[
+		"modest",
+		"smart",
+		"kind",
+		"funny",
+		"polite",
+		"motivated",
+		"self-driven"
+	],
+	"skills" :
+	[
+		"HTML",
+		"JS",
+		"Backbone",
+		"CSS",
+		"React"
+	],
+	"requiresVisa" : false
+}
