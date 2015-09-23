@@ -7,7 +7,7 @@ var _flow =
 {
     title      : '',
     rules      : new FlowGenerator(),
-    errors     : [],
+    error      : null,
     results    : [],
     editedRule : {}
 }
@@ -55,7 +55,7 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
                 _flow.rules.addRule( rule )
                 flowStore.emitChange();
             } catch( e ) {
-                _flow.errors.push( e );
+                _flow.error = e;
                 flowStore.emitChange();
             }
         break;

@@ -5,6 +5,7 @@ import RuleForm from './ruleform.component';
 import JsonInput from './jsoninput.component';
 import Errors from './errors.component';
 import {executeFlow} from '../action-creators';
+import {Navbar} from 'react-bootstrap';
 
 export default React.createClass(
 {
@@ -40,15 +41,12 @@ export default React.createClass(
     render()
     {
         var rules  = this.state.flow.rules.getRules();
-        var errors = this.state.flow.errors;
-
+        var error = this.state.flow.error;
 
         return (
-            <div>
-                <header>
-                    <h1>Got Da Flow</h1>
-                </header>
-                <Errors errors={errors}/>
+            <div className="fluid-container">
+                <Navbar brand="Got Da Flow"/>
+                <Errors error={error}/>
                 <ul>
                     {rules}
                 </ul>

@@ -1,19 +1,27 @@
 import React from 'react';
+import {Alert} from 'react-bootstrap';
 
 export default React.createClass(
 {
     propTypes:
     {
-        errors : React.PropTypes.array.isRequired
+        error : React.PropTypes.oneOfType(
+        [
+            React.PropTypes.number, React.PropTypes.string
+        ] )
     },
 
     render()
     {
 
+
         return (
-            <div>
-                ERRORS
+            <div className="row">
+                <div className="col-md-12">
+                    <Alert bsStyle="danger">{this.props.error}</Alert>
+                </div>
             </div>
+
         );
     }
 } );
