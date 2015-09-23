@@ -1,5 +1,6 @@
 import React from 'react';
 import {addRule} from '../action-creators';
+import {Input, ButtonInput} from 'react-bootstrap';
 
 export default React.createClass(
 {
@@ -25,35 +26,29 @@ export default React.createClass(
         rule : React.PropTypes.object
     },
 
-    _onRuleAdd()
+    _onAddClick()
     {
         var rule =
         {
-            id            : this.refs.id.getDOMNode().value,
-            title         : this.refs.title.getDOMNode().value,
-            body          : this.refs.body.getDOMNode().value,
-            trueResultId  : this.refs.trueResultId.getDOMNode().value,
-            falseResultId : this.refs.falseResultId.getDOMNode().value
+            id            : this.refs.id.getValue(),
+            title         : this.refs.title.getValue(),
+            body          : this.refs.body.getValue(),
+            trueResultId  : this.refs.trueResultId.getValue(),
+            falseResultId : this.refs.falseResultId.getValue()
         }
 
         addRule( rule );
     },
-
     render()
     {
         return (
             <form>
-                <label>id</label>
-                <input type="text" ref="id"/>
-                <label>title</label>
-                <input type="text" ref="title"/>
-                <label>body</label>
-                <textarea ref="body"/>
-                <label>trueResultId</label>
-                <input type="text" ref="trueResultId"/>
-                <label>falseResultId</label>
-                <input type="text" ref="falseResultId"/>
-                <button onClick={this._onRuleAdd}>add</button>
+                <Input type="text" ref="id" label="Rule id" placeholder="e.g. 12" />
+                <Input type="text" ref="title" label="Rule title" placeholder="e.g. Check if the data is relly there" />
+                <Input type="textarea" ref="body" label="Rule body" placeholder="e.g. function( data ) { returns data !== false }" />
+                <Input type="text" ref="trueResultId" label="If result is true - go to this rule" placeholder="e.g. 233" />
+                <Input type="text" ref="falseResultId" label="if result is false - go to that rule" placeholder="e.g. 342" />
+                <ButtonInput type="submit" onClick={this._onAddClick}value="Add the rule!" bsSize="large" />
             </form>
         )
     }
