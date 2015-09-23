@@ -1,14 +1,20 @@
 import React from 'react';
+import {executeFlow} from '../action-creators';
+import {Input, ButtonInput} from 'react-bootstrap';
 
 export default React.createClass(
 {
+    _onExecuteClick()
+    {
+        executeFlow( this.refs.data.getValue() )
+    },
+
     render()
     {
         return (
         <div>
-        	JSON INPUT
-        	<textarea ref="data"></textarea>
-            <button onClick={this._onExecuteClick}>Execute</button>
+        	<Input type="textarea" label="JSON String" ref="data" />
+            <ButtonInput type="submit" onClick={this._onExecuteClick}value="Execute Da Flow!" bsSize="large" />
         </div>
         );
     }

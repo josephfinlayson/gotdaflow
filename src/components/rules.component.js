@@ -1,4 +1,5 @@
 import React from 'react';
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
 
 export default React.createClass(
 {
@@ -11,13 +12,13 @@ export default React.createClass(
     {
         var rules = this.props.rules.map( ( rule ) =>
         {
-            return (<li key={rule.id}>{rule.title}</li>)
+            return <ListGroupItem key={rule.id} header={rule.title}>{rule.body}</ListGroupItem>
         } );
 
         return (
-            <ul>
+            <ListGroup>
                 {rules}
-            </ul>
+            </ListGroup>
         );
     }
 } );

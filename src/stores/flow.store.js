@@ -24,6 +24,11 @@ class FlowStore extends EventEmitter
         return _flow;;
     }
 
+    resetError()
+    {
+        _flow.error = null;
+    }
+
     emitChange()
     {
         this.emit( CHANGE_EVENT );
@@ -51,6 +56,7 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
     {
         case actionTypes.ADD_RULE:
             var rule = payload.rule;
+            flowStore.resetError();
             try {
                 _flow.rules.addRule( rule )
                 flowStore.emitChange();
