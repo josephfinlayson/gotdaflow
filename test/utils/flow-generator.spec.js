@@ -30,6 +30,19 @@ describe( 'Flow Generator', () =>
             expect( flowgenerator._rules[0].trueResultId ).to.be.equal( '2' );
             expect( flowgenerator._rules[0].falseResultId ).to.be.equal( '3' );
         } );
+
+        it( 'Gets the rules stored in the genrator', () =>
+        {
+            var rules = flowgenerator.getRules();
+            expect( rules ).to.be.an( 'array' );
+            expect( rules ).to.have.length( 1 );
+            expect( rules[0] ).to.be.an( 'object' );
+            expect( rules[0].id ).to.be.equal( '1' );
+            expect( rules[0].title ).to.be.equal( 'My First Rule' );
+            expect( rules[0].body ).to.be.a( 'function' );
+            expect( rules[0].trueResultId ).to.be.equal( '2' );
+            expect( rules[0].falseResultId ).to.be.equal( '3' );
+        } );
     } );
 
 

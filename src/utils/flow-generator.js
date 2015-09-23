@@ -32,6 +32,12 @@ class FlowGenerator
     }
 
 
+    getRules()
+    {
+        return this._rules;
+    }
+
+
     _validateIds( rule )
     {
         if ( this._findWhere( 'id', rule.id ) )
