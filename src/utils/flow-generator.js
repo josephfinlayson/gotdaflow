@@ -2,7 +2,7 @@ const ruleSchema =
 {
     id            : { type : 'string' },
     title         : { type : 'string' },
-    body          : { type :'function' },
+    body          : { type : 'string' },
     trueResultId  : { type : 'string', allowNull : true },
     falseResultId : { type : 'string', allowNull : true }
 };
@@ -27,6 +27,7 @@ class FlowGenerator
 
         this._validateRule( rule );
         this._validateIds( rule )
+        rule.body = this._createFunctionFromString( rule.body );
 
         this._rules.push( rule );
     }
@@ -97,6 +98,37 @@ class FlowGenerator
         results.push( 'end' );
 
         return results;
+    }
+
+    _createFunctionFromString( string )
+    {
+        if ( ! string )
+        {
+            throw 'Could not create function from the supplied Rule Body';
+        }
+
+        var match = string.match( /\((.+|)\)(.+)?\{(.+)\}/ );
+
+        if ( ! match )
+        {
+            throw 'Could not create function from the supplied Rule Body';
+        }
+
+        var argument = match[1];
+
+        if ( ! argument )
+        {
+            throw 'Your Rule Body is missing an argument to represent the data';
+        }
+
+        var body = match[3];
+
+        if ( ! body )
+        {
+            throw 'Your Rule Body is missing an expression inside the function itself';
+        }
+
+        return Function( argument.trim(), body.trim() );
     }
 
     _validateRule( rule )

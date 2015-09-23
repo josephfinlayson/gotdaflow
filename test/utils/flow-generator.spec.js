@@ -17,7 +17,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '1',
                 title         : 'My First Rule',
-                body          : () => { if ( 0 < 1 ) return true },
+                body          : '( data ) => { if ( 0 < 1 ) return true }',
                 trueResultId  : '2',
                 falseResultId : '3'
             } );
@@ -31,7 +31,7 @@ describe( 'Flow Generator', () =>
             expect( flowgenerator._rules[0].falseResultId ).to.be.equal( '3' );
         } );
 
-        it( 'Gets the rules stored in the genrator', () =>
+        it( 'Gets the rules stored in the generator', () =>
         {
             var rules = flowgenerator.getRules();
             expect( rules ).to.be.an( 'array' );
@@ -56,10 +56,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '20',
                 title : 'Checking if candidate has JS skills',
-                body : ( data ) =>
-                {
-                    return data.skills && data.skills.indexOf( 'JS' ) !== -1
-                },
+                body : '( data ) =>{return data.skills && data.skills.indexOf( "JS" ) !== -1}',
                 trueResultId : '654',
                 falseResultId : null
             } );
@@ -68,10 +65,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '654',
                 title : 'Checking if candidate has Backbone skills',
-                body : ( data ) =>
-                {
-                    return data.skills && data.skills.indexOf( 'Backbone' ) !== -1
-                },
+                body : '( data ) => { return data.skills && data.skills.indexOf( "Backbone" ) !== -1}',
                 trueResultId : '233',
                 falseResultId : null
             } );
@@ -80,10 +74,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '233',
                 title : 'Checking if candidate has Angular skills',
-                body : ( data ) =>
-                {
-                    return data.skills && data.skills.indexOf( 'Angular' ) !== -1
-                },
+                body : '( data ) => { return data.skills && data.skills.indexOf( "Angular" ) !== -1}',
                 trueResultId : '2347',
                 falseResultId : '2347'
             } );
@@ -92,10 +83,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '2347',
                 title : 'Checking if candidate is kind',
-                body : ( data ) =>
-                {
-                    return data.personality && data.personality.indexOf( 'kind' ) !== -1
-                },
+                body : '( data ) => { return data.personality && data.personality.indexOf( "kind" ) !== -1}',
                 trueResultId : '666',
                 falseResultId : '666'
             } );
@@ -104,10 +92,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '666',
                 title : 'Checking if candidate is an idiot',
-                body : ( data ) =>
-                {
-                    return data.personality && data.personality.indexOf( 'idiot' ) !== -1
-                },
+                body : '( data ) => { return data.personality && data.personality.indexOf( "idiot" ) !== -1}',
                 trueResultId : null,
                 falseResultId : '1'
             } );
@@ -116,10 +101,7 @@ describe( 'Flow Generator', () =>
             {
                 id : '1',
                 title : 'Checking if candidate is cool',
-                body : ( data ) =>
-                {
-                    return data.personality && data.personality.indexOf( 'cool' ) !== -1
-                },
+                body : '( data ) => { return data.personality && data.personality.indexOf( "cool" ) !== -1}',
                 trueResultId : null,
                 falseResultId : null
             } );
@@ -139,6 +121,17 @@ describe( 'Flow Generator', () =>
         } );
     } );
 
+    describe( 'Function creation from string', () =>
+    {
+        it( 'Generates a string from a string', ()=>
+        {
+            var flowgenerator = new FlowGenerator();
+            var string = "function( data ) { return data !== false }";
+            var createdFunction = flowgenerator._createFunctionFromString( string );
+            expect( createdFunction( {ofir : 'cool'} ) ).to.be.true;
+        } );
+    } );
+
     describe( 'Validation', () =>
     {
         var flowgenerator = new FlowGenerator();
@@ -147,7 +140,7 @@ describe( 'Flow Generator', () =>
         {
             id            : '1',
             title         : 'My First Rule',
-            body          : () => { if ( 0 < 1 ) return true },
+            body          : '( data ) => { if ( 0 < 1 ) return true }',
             trueResultId  : '2',
             falseResultId : '22'
         } );
@@ -166,7 +159,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '1',
                 title         : 'My Second Rule',
-                body          : () => { if ( 2 > 1 ) return true },
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
                 trueResultId  : '3',
                 falseResultId : null
             };
@@ -181,7 +174,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '2',
                 title         : 'My Second Rule',
-                body          : () => { if ( 2 > 1 ) return true },
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
                 trueResultId  : '2',
                 falseResultId : null
             };
@@ -196,7 +189,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '2',
                 title         : 'My Second Rule',
-                body          : () => { if ( 2 > 1 ) return true },
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
                 trueResultId  : '4',
                 falseResultId : '22'
             };
@@ -211,7 +204,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '2',
                 title         : 'My Second Rule',
-                body          : () => { if ( 2 > 1 ) return true },
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
                 trueResultId  : '1',
                 falseResultId : null
             };
@@ -226,7 +219,7 @@ describe( 'Flow Generator', () =>
             {
                 id            : '2',
                 title         : 'My Second Rule',
-                body          : () => { if ( 2 > 1 ) return true },
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
                 trueResultId  : '5',
                 falseResultId : '1'
             };
@@ -244,18 +237,18 @@ describe( 'Flow Generator', () =>
             expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing keys: title, body, trueResultId, falseResultId' );
             var badRule2 = { id : '23', title : 'My First Rule' };
             expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing keys: body, trueResultId, falseResultId' );
-            var badRule3 = { id : '23', title : 'My First Rule', body : () => {} };
+            var badRule3 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
             expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 'Rule missing keys: trueResultId, falseResultId' );
-            var badRule4 = { id : '23', title : 'My First Rule', body : () => {}, trueResultId : '3' };
+            var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3' };
             expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.throw( 'Rule missing keys: falseResultId' );
-            var badRule5 = { id : '23', title : 'My First Rule', body : () => {}, trueResultId : '3', falseResultId : '4' };
+            var badRule5 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3', falseResultId : '4' };
             expect( () => { flowgenerator._validateRule( badRule5 ) } ).to.not.throw();
 
             var badRule6 = { id : 22 };
             expect( () => { flowgenerator._validateRule( badRule6 ) } ).to.throw( 'id should be a string' );
             var badRule7 = { body : null };
-            expect( () => { flowgenerator._validateRule( badRule7 ) } ).to.throw( 'body should be a function' );
-            var badRule8 = { id : '23', title : 'My First Rule', body : () => {}, trueResultId : '3', falseResultId : null };
+            expect( () => { flowgenerator._validateRule( badRule7 ) } ).to.throw( 'body should be a string' );
+            var badRule8 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3', falseResultId : null };
             expect( () => { flowgenerator._validateRule( badRule8 ) } ).to.not.throw();
         } );
     } );
