@@ -4,6 +4,7 @@ import Rules from './rules.component';
 import RuleForm from './ruleform.component';
 import JsonInput from './jsoninput.component';
 import Errors from './errors.component';
+import Results from './results.component';
 import {Navbar} from 'react-bootstrap';
 
 export default React.createClass(
@@ -41,6 +42,7 @@ export default React.createClass(
     {   
         var rules        = this.state.flow.rules.getRules();
         var error        = this.state.flow.error;
+        var results      = this.state.flow.results;
         var errorDisplay = error ? <Errors error={error}/> : false;
 
         return (
@@ -50,6 +52,7 @@ export default React.createClass(
                 <Rules rules={rules}/>
                 <RuleForm />
                 <JsonInput />
+                <Results results={results} />
             </div>
         )
     }
