@@ -31,13 +31,7 @@ export default React.createClass(
     {
         this.setState( this.getInitialState() );
     },
-
-
-    _onExecuteClick()
-    {
-        executeFlow( this.refs.data.getDOMNode().value );
-    },
-
+    
     render()
     {   
         var rules        = this.state.flow.rules.getRules();
