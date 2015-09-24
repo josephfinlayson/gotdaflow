@@ -16,9 +16,14 @@ export default React.createClass(
         } );
 
         return (
-            <ListGroup>
-                {results}
-            </ListGroup>
+            <div className="row">
+                <div className="col-md-12">
+                    <h2 className="page-header">Step 3: Results <small>They will show after you execute...</small></h2>
+                    <ListGroup>
+                        {results}
+                    </ListGroup>
+                </div>
+            </div>
         );
     }
 } );

@@ -16,9 +16,13 @@ export default React.createClass(
         } );
 
         return (
-            <ListGroup>
-                {rules}
-            </ListGroup>
+            <div className="row">
+                <div className="md-col-12">
+                    <ListGroup>
+                        {rules}
+                    </ListGroup>
+                </div>
+            </div>
         );
     }
 } );

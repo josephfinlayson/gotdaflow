@@ -42,14 +42,19 @@ export default React.createClass(
     render()
     {
         return (
-            <form>
-                <Input type="text" ref="id" label="Rule id" placeholder="e.g. 12" />
-                <Input type="text" ref="title" label="Rule title" placeholder="e.g. Check if the data is relly there" />
-                <Input type="textarea" ref="body" label="Rule body" placeholder="e.g. function( data ) { returns data !== false }" />
-                <Input type="text" ref="trueResultId" label="If result is true - go to this rule" placeholder="e.g. 233" />
-                <Input type="text" ref="falseResultId" label="if result is false - go to that rule" placeholder="e.g. 342" />
-                <ButtonInput type="submit" onClick={this._onAddClick}value="Add the rule!" bsSize="large" />
-            </form>
+            <div className="row">
+                <div className="col-md-12">
+                    <h2 className="page-header">Step 1: Create a new rule! <small>Don't be shy!</small></h2>
+                    <form>
+                        <Input type="text" ref="id" label="Rule id" placeholder="e.g. 12" />
+                        <Input type="text" ref="title" label="Rule title" placeholder="e.g. Check if the data is relly there" />
+                        <Input type="textarea" ref="body" label="Rule body" placeholder="e.g. function( data ) { returns data !== false }" />
+                        <Input type="text" ref="trueResultId" label="If result is true - go to this rule" placeholder="e.g. 233" />
+                        <Input type="text" ref="falseResultId" label="if result is false - go to that rule" placeholder="e.g. 342" />
+                        <ButtonInput type="submit" onClick={this._onAddClick}value="Add the rule!" bsSize="large" />
+                    </form>
+                </div>
+            </div>
         )
     }
 } );
