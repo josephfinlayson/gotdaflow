@@ -1,8 +1,13 @@
 import React from 'react';
 import {Alert} from 'react-bootstrap';
+import {errors} from '../constants/constants';
+
+
 
 export default React.createClass(
 {
+
+
     propTypes:
     {
         error : React.PropTypes.oneOfType(
@@ -13,15 +18,15 @@ export default React.createClass(
 
     render()
     {
-
-
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <Alert bsStyle="danger">{this.props.error}</Alert>
+                    <Alert bsStyle="danger">{errors[this.props.error]}</Alert>
                 </div>
             </div>
 
         );
     }
+
+
 } );

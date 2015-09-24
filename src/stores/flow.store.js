@@ -61,7 +61,7 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
                 _flow.rules.addRule( rule )
                 flowStore.emitChange();
             } catch( e ) {
-                _flow.error = e;
+                _flow.error = e.message;
                 flowStore.emitChange();
             }
         break;

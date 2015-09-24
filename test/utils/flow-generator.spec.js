@@ -179,7 +179,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : null
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /102/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /104/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -194,7 +194,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : '22'
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /103/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /105/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -209,7 +209,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : null
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /104/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /106/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -224,7 +224,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : '1'
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /105/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /107/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -239,7 +239,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : '22'
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /106/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /102/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -254,7 +254,7 @@ describe( 'Flow Generator', () =>
                 falseResultId : '2'
             };
 
-            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /107/ );
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /103/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 
@@ -262,11 +262,11 @@ describe( 'Flow Generator', () =>
         {
             var flowgenerator = new FlowGenerator();
             var badRule1 = {};
-            expect( () => { flowgenerator._validateRule( badRule1 ) } ).to.throw( 'Rule missing required value: id' );
+            expect( () => { flowgenerator._validateRule( badRule1 ) } ).to.throw( 107 );
             var badRule2 = { id : '23' };
-            expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing required value: title' );
+            expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 107 );
             var badRule3 = { id : '23', title : 'My First Rule' };
-            expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 'Rule missing required value: body' );
+            expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 107 );
             var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
             expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.not.throw();
         } );

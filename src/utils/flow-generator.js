@@ -39,44 +39,6 @@ class FlowGenerator
     }
 
 
-    _validateIds( rule )
-    {
-        if ( this._findWhere( 'id', rule.id ) )
-        {
-            throw 101;
-        };
-
-        if ( rule.id === rule.trueResultId )
-        {
-            throw 106;
-        }
-
-        if ( rule.id === rule.falseResultId )
-        {
-            throw 107;
-        }
-
-        if ( this._findWhere( 'trueResultId', rule.trueResultId ) )
-        {
-            throw 102;
-        }
-
-        if ( this._findWhere( 'falseResultId', rule.falseResultId ) )
-        {
-            throw 103;
-        }
-
-        if ( this._rules[0] && this._rules[0].id === rule.trueResultId )
-        {
-            throw 104;
-        }
-
-        if ( this._rules[0] && this._rules[0].id === rule.falseResultId )
-        {
-            throw 105;
-        }
-    }
-
     execute( JSON )
     {
         var results = ['start'];
@@ -114,28 +76,28 @@ class FlowGenerator
     {
         if ( ! string )
         {
-            throw 'Could not create function from the supplied Rule Body';
+            throw ( 109 );
         }
 
         var match = string.match( /\((.+|)\)(.+)?\{(.+)\}/ );
 
         if ( ! match )
         {
-            throw 'Could not create function from the supplied Rule Body';
+            throw ( 109 );
         }
 
         var argument = match[1];
 
         if ( ! argument )
         {
-            throw 'Your Rule Body is missing an argument to represent the data';
+            throw ( 110 );
         }
 
         var body = match[3];
 
         if ( ! body )
         {
-            throw 'Your Rule Body is missing an expression inside the function itself';
+            throw ( 111 );
         }
 
         return Function( argument.trim(), body.trim() );
@@ -157,11 +119,51 @@ class FlowGenerator
 
                 if ( required && ! value )
                 {
-                    throw 'Rule missing required value: ' + key;
+                    throw new Error( 108 );
                 }
             }
         }
     }
+
+
+    _validateIds( rule )
+    {
+        if ( this._findWhere( 'id', rule.id ) )
+        {
+            throw new Error( 101 );
+        };
+
+        if ( rule.id === rule.trueResultId )
+        {
+            throw new Error( 102 );
+        }
+
+        if ( rule.id === rule.falseResultId )
+        {
+            throw new Error( 103 );
+        }
+
+        if ( this._findWhere( 'trueResultId', rule.trueResultId ) )
+        {
+            throw new Error( 104 );
+        }
+
+        if ( this._findWhere( 'falseResultId', rule.falseResultId ) )
+        {
+            throw new Error( 105 );
+        }
+
+        if ( this._rules[0] && this._rules[0].id === rule.trueResultId )
+        {
+            throw new Error( 106 );
+        }
+
+        if ( this._rules[0] && this._rules[0].id === rule.falseResultId )
+        {
+            throw new Error( 107 );
+        }
+    }
+
 
     _findWhere( key, val )
     {
