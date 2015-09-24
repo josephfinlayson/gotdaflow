@@ -26,7 +26,7 @@ describe( 'Flow Generator', () =>
             expect( flowgenerator._rules[0] ).to.be.an( 'object' );
             expect( flowgenerator._rules[0].id ).to.be.equal( '1' );
             expect( flowgenerator._rules[0].title ).to.be.equal( 'My First Rule' );
-            expect( flowgenerator._rules[0].body ).to.be.a( 'function' );
+            expect( flowgenerator._rules[0].body ).to.be.a( 'string' );
             expect( flowgenerator._rules[0].trueResultId ).to.be.equal( '2' );
             expect( flowgenerator._rules[0].falseResultId ).to.be.equal( '3' );
         } );
@@ -39,7 +39,7 @@ describe( 'Flow Generator', () =>
             expect( rules[0] ).to.be.an( 'object' );
             expect( rules[0].id ).to.be.equal( '1' );
             expect( rules[0].title ).to.be.equal( 'My First Rule' );
-            expect( rules[0].body ).to.be.a( 'function' );
+            expect( rules[0].body ).to.be.a( 'string' );
             expect( rules[0].trueResultId ).to.be.equal( '2' );
             expect( rules[0].falseResultId ).to.be.equal( '3' );
         } );

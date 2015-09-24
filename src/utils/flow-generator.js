@@ -27,7 +27,7 @@ class FlowGenerator
 
         this._validateRule( rule );
         this._validateIds( rule )
-        rule.body = this._createFunctionFromString( rule.body );
+        rule.bodyFunction = this._createFunctionFromString( rule.body );
 
         this._rules.push( rule );
     }
@@ -81,7 +81,7 @@ class FlowGenerator
             // Execute the rule, and if it is true, register the passed message
             // and set the next rule to execute as the one with the true result
             // id of the current rule
-            if ( ruleToExecute.body( JSON ) === true )
+            if ( ruleToExecute.bodyFunction( JSON ) === true )
             {
                 results.push( ruleToExecute.title + ' | passed' );
                 ruleToExecute = this._findWhere( 'id', ruleToExecute.trueResultId );
