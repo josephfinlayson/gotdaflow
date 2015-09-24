@@ -1,10 +1,10 @@
-const ruleSchema =
+const validation =
 {
-    id            : { type : 'string' },
-    title         : { type : 'string' },
-    body          : { type : 'string' },
-    trueResultId  : { type : 'string', allowNull : true },
-    falseResultId : { type : 'string', allowNull : true }
+    id            : { required : true },
+    title         : { required : true },
+    body          : { required : true },
+    trueResultId  : { required : false },
+    falseResultId : { required : false }
 };
 
 class FlowGenerator
@@ -143,39 +143,23 @@ class FlowGenerator
 
     _validateRule( rule )
     {
-        var missingKeys = [];
         var allowedType;
-        var allowNull;
+        var required;
         var value;
 
-        for( var key in ruleSchema )
+        for( var key in validation )
         {
-            if ( ruleSchema.hasOwnProperty( key ) )
+            if ( validation.hasOwnProperty( key ) )
             {
-                allowedType = ruleSchema[key].type;
-                allowNull   = ruleSchema[key].allowNull;
+                allowedType = validation[key].type;
+                required    = validation[key].required;
                 value       = rule[key];
 
-                if ( typeof value === 'undefined' )
+                if ( required && ! value )
                 {
-                    missingKeys.push( key );
-                }
-                else if ( typeof value !== allowedType )
-                {
-                    // this is to avoid throwing an exception for null values
-                    // in keys where null values are allowed, such as
-                    // 'falseResultId'
-                    if ( ! (  allowNull && value === null ) )
-                    {
-                        throw key + ' should be a ' + allowedType;
-                    }
+                    throw 'Rule missing required value: ' + key;
                 }
             }
-        }
-
-        if ( missingKeys.length )
-        {
-            throw 'Rule missing keys: ' + missingKeys.join( ', ' );
         }
     }
 

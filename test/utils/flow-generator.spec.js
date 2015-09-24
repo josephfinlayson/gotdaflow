@@ -262,24 +262,13 @@ describe( 'Flow Generator', () =>
         {
             var flowgenerator = new FlowGenerator();
             var badRule1 = {};
-            expect( () => { flowgenerator._validateRule( badRule1 ) } ).to.throw( 'Rule missing keys: id, title, body, trueResultId, falseResultId' );
+            expect( () => { flowgenerator._validateRule( badRule1 ) } ).to.throw( 'Rule missing required value: id' );
             var badRule2 = { id : '23' };
-            expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing keys: title, body, trueResultId, falseResultId' );
-            var badRule2 = { id : '23', title : 'My First Rule' };
-            expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing keys: body, trueResultId, falseResultId' );
-            var badRule3 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
-            expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 'Rule missing keys: trueResultId, falseResultId' );
-            var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3' };
-            expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.throw( 'Rule missing keys: falseResultId' );
-            var badRule5 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3', falseResultId : '4' };
-            expect( () => { flowgenerator._validateRule( badRule5 ) } ).to.not.throw();
-
-            var badRule6 = { id : 22 };
-            expect( () => { flowgenerator._validateRule( badRule6 ) } ).to.throw( 'id should be a string' );
-            var badRule7 = { body : null };
-            expect( () => { flowgenerator._validateRule( badRule7 ) } ).to.throw( 'body should be a string' );
-            var badRule8 = { id : '23', title : 'My First Rule', body : '(data) => {}', trueResultId : '3', falseResultId : null };
-            expect( () => { flowgenerator._validateRule( badRule8 ) } ).to.not.throw();
+            expect( () => { flowgenerator._validateRule( badRule2 ) } ).to.throw( 'Rule missing required value: title' );
+            var badRule3 = { id : '23', title : 'My First Rule' };
+            expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 'Rule missing required value: body' );
+            var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
+            expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.not.throw();
         } );
     } );
 });
