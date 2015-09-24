@@ -141,7 +141,7 @@ describe( 'Flow Generator', () =>
             id            : '1',
             title         : 'My First Rule',
             body          : '( data ) => { if ( 0 < 1 ) return true }',
-            trueResultId  : '2',
+            trueResultId  : '5',
             falseResultId : '22'
         } );
 
@@ -175,7 +175,7 @@ describe( 'Flow Generator', () =>
                 id            : '2',
                 title         : 'My Second Rule',
                 body          : '( data ) => { if ( 2 > 1 ) return true }',
-                trueResultId  : '2',
+                trueResultId  : '5',
                 falseResultId : null
             };
 
@@ -220,11 +220,41 @@ describe( 'Flow Generator', () =>
                 id            : '2',
                 title         : 'My Second Rule',
                 body          : '( data ) => { if ( 2 > 1 ) return true }',
-                trueResultId  : '5',
+                trueResultId  : '566',
                 falseResultId : '1'
             };
 
             expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /105/ );
+            expect( flowgenerator._rules ).to.have.length( 1 );
+        } );
+
+        it( 'Throwing an exception if the rule true result id is the same as the rule id', () =>
+        {
+            var rule =
+            {
+                id            : '2',
+                title         : 'My Second Rule',
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
+                trueResultId  : '2',
+                falseResultId : '22'
+            };
+
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /106/ );
+            expect( flowgenerator._rules ).to.have.length( 1 );
+        } );
+
+        it( 'Throwing an exception if the rule false result id is the same as the rule id', () =>
+        {
+            var rule =
+            {
+                id            : '2',
+                title         : 'My Second Rule',
+                body          : '( data ) => { if ( 2 > 1 ) return true }',
+                trueResultId  : '22',
+                falseResultId : '2'
+            };
+
+            expect( () => { flowgenerator._validateIds( rule ) } ).to.throw( /107/ );
             expect( flowgenerator._rules ).to.have.length( 1 );
         } );
 

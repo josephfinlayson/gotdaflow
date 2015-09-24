@@ -46,6 +46,16 @@ class FlowGenerator
             throw 101;
         };
 
+        if ( rule.id === rule.trueResultId )
+        {
+            throw 106;
+        }
+
+        if ( rule.id === rule.falseResultId )
+        {
+            throw 107;
+        }
+
         if ( this._findWhere( 'trueResultId', rule.trueResultId ) )
         {
             throw 102;
