@@ -46,7 +46,7 @@ export default React.createClass(
         var errorDisplay = error ? <Errors error={error}/> : false;
 
         return (
-            <div className="fluid-container">
+            <div className="container">
                 <Navbar brand="Got Da Flow"/>
                 {errorDisplay}
                 <Rules rules={rules}/>

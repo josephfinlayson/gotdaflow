@@ -12,7 +12,7 @@ export default React.createClass(
     {
         var rules = this.props.rules.map( ( rule ) =>
         {
-            return <ListGroupItem key={rule.id} header={rule.title}>{rule.body}</ListGroupItem>
+            return <ListGroupItem key={rule.id} header={rule.title}><code>{rule.body}</code></ListGroupItem>
         } );
 
         return (
