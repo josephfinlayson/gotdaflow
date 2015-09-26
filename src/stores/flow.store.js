@@ -56,14 +56,15 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
     {
         case actionTypes.ADD_RULE:
             var rule = payload.rule;
-            flowStore.resetError();
-            try {
-                _flow.rules.addRule( rule )
-                flowStore.emitChange();
-            } catch( e ) {
-                _flow.error = e.message;
-                flowStore.emitChange();
-            }
+            // flowStore.resetError();
+            _flow.rules.addRule( rule );
+            // try {
+            //     _flow.rules.addRule( rule )
+            //     flowStore.emitChange();
+            // } catch( e ) {
+            //     _flow.error = e.message;
+            //     flowStore.emitChange();
+            // }
         break;
 
         case actionTypes.EXECUTE_FLOW:

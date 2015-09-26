@@ -23,7 +23,9 @@ export default React.createClass(
             title         : '',
             body          : '',
             trueResultId  : '',
-            falseResultId : ''
+            falseResultId : '',
+            error : false
+
         }
     },
 
@@ -38,13 +40,21 @@ export default React.createClass(
     _onAddClick( e )
     {
         e.preventDefault();
+
+        try {
         addRule( this.state );
+        this.setState( this.getInitialState() )
+            } catch( e )
+            {
+                this.setState( { error : e.message} )
+                debugger;
+            }
     },
 
 
     render()
     {
-        var displayAlert = this.props.error ? <Alert bsStyle="danger">{errors[this.props.error]}</Alert> : false;
+        var displayAlert = this.state.error ? <Alert bsStyle="danger">{errors[this.state.error]}</Alert> : false;
         
         return (
             <div className="row">
