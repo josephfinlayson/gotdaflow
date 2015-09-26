@@ -3,17 +3,12 @@ import FlowStore from '../stores/flow.store';
 import Rules from './rules.component';
 import RuleForm from './ruleform.component';
 import JsonInput from './jsoninput.component';
-import Errors from './errors.component';
 import Results from './results.component';
 import {Navbar} from 'react-bootstrap';
 
 export default React.createClass(
 {
-    returnSomething(something)
-    {
-        //this is only for testing purposes. Check /test/components/App-test.js
-        return something;
-    },
+
 
     getInitialState()
     {
@@ -22,32 +17,36 @@ export default React.createClass(
         }
     },
 
+
     componentDidMount()
     {
         FlowStore.addChangeListener( this._onChange );
     },
+
 
     _onChange()
     {
         this.setState( this.getInitialState() );
     },
     
+
     render()
     {   
         var rules        = this.state.flow.rules.getRules();
         var error        = this.state.flow.error;
         var results      = this.state.flow.results;
-        var errorDisplay = error ? <Errors error={error}/> : false;
+        var rulesDisplay = rules.length ? <Rules rules={rules} /> : false;
 
         return (
             <div className="container">
                 <Navbar brand="Got Da Flow"/>
-                {errorDisplay}
-                <Rules rules={rules}/>
-                <RuleForm />
+                {rulesDisplay}
+                <RuleForm error={this.state.flow.error}/>
                 <JsonInput />
                 <Results results={results} />
             </div>
         )
     }
+
+
 } );

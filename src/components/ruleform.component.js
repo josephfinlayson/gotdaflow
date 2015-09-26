@@ -1,14 +1,20 @@
 import React from 'react';
 import {addRule} from '../action-creators';
-import {Input, ButtonInput} from 'react-bootstrap';
+import {Alert, Input, ButtonInput} from 'react-bootstrap';
+import {errors} from '../constants/constants';
 
 export default React.createClass(
 {
-    returnSomething(something)
+
+    propTypes :
     {
-        //this is only for testing purposes. Check /test/components/App-test.js
-        return something;
+        rule  : React.PropTypes.object,
+        error : React.PropTypes.oneOfType(
+        [
+            React.PropTypes.number, React.PropTypes.string
+        ] )
     },
+
 
     getInitialState()
     {
@@ -21,10 +27,6 @@ export default React.createClass(
         }
     },
 
-    propTypes :
-    {
-        rule : React.PropTypes.object
-    },
 
     _onAddClick()
     {
@@ -39,12 +41,17 @@ export default React.createClass(
 
         addRule( rule );
     },
+
+
     render()
     {
+        var displayAlert = this.props.error ? <Alert bsStyle="danger">{errors[this.props.error]}</Alert> : false;
+        
         return (
             <div className="row">
                 <div className="col-md-12">
                     <h2 className="page-header">Step 1: Create a new rule! <small>Don't be shy!</small></h2>
+                    {displayAlert}
                     <form>
                         <Input type="text" ref="id" label="Rule id" placeholder="e.g. 12" />
                         <Input type="text" ref="title" label="Rule title" placeholder="e.g. Check if the data is relly there" />
@@ -57,4 +64,6 @@ export default React.createClass(
             </div>
         )
     }
+
+
 } );
