@@ -1,3 +1,8 @@
+/**
+ * Rule properties and whether they are required or not
+ *
+ * @var     obj
+ */
 const validation =
 {
     id            : { required : true },
@@ -7,16 +12,34 @@ const validation =
     falseResultId : { required : false }
 };
 
+
+/**
+ * Class generates a rule flow
+ *
+ * @constructor 
+ */
 class FlowGenerator
 {
 
 
+    /**
+     * Initializes the flow generator
+     *
+     * @return  void
+     */
     constructor()
     {
         this._rules  = [];
     }
 
 
+    /**
+     * Adds a rule to the flow
+     *
+     * @param   obj                 rule                rule information
+     *
+     * @return  void
+     */
     addRule( rule )
     {
         // To ignore empty rules. Perhaps this should be added to the errors
@@ -33,12 +56,24 @@ class FlowGenerator
     }
 
 
+    /**
+     * Returns the flow rules
+     *
+     * @return  arr                                     flow rules
+     */
     getRules()
     {
         return this._rules;
     }
 
 
+    /**
+     * Executes the rules in the flow on the supplied JSON string
+     *
+     * @param   str                 JSON                JSON string
+     *
+     * @return  arr                                     results
+     */
     execute( JSON )
     {
         var results = ['start'];
@@ -72,6 +107,22 @@ class FlowGenerator
         return results;
     }
 
+
+    /**
+     * Creates a function from the passed string
+     *
+     * This method uses regex to find out if the passed string actually
+     * represents a function (with one parameter only), and tries to isolate the
+     * parameter and the body, to use the Function constructor. While using
+     * Regex can prove treacherous, i decided its the lesser of two evils in
+     * this case since my other option was to use eval() which has worse flows
+     * and provides me less control. Also, by using regex i provided some
+     * validation about the content of the body.  
+     *
+     * @param   str                 string              well.. string... duh...
+     *
+     * @return  func                                    a function 
+     */
     _createFunctionFromString( string )
     {
         if ( ! string )
@@ -103,6 +154,14 @@ class FlowGenerator
         return Function( argument.trim(), body.trim() );
     }
 
+
+    /**
+     * Validates that the rule has all the required data to be added to the flow
+     *
+     * @param   obj                 rule                rule information
+     *
+     * @return  void
+     */
     _validateRule( rule )
     {
         var allowedType;
@@ -126,6 +185,13 @@ class FlowGenerator
     }
 
 
+    /**
+     * Validates the the rule id, trueResultIt and falseResultId are ok
+     *
+     * @param   obj                 rule                rule information
+     *
+     * @return  void
+     */
     _validateIds( rule )
     {
         if ( this._findWhere( 'id', rule.id ) )
@@ -165,7 +231,20 @@ class FlowGenerator
     }
 
 
-    _findWhere( key, val )
+    /**
+     * Iterates over the flow's rules and returns the first rule it finds with
+     * the passed key as a property which has a corresponding value equal to
+     * the passed value
+     *
+     * @param   str                 key                 property key
+     * @param   mixed               value               property value
+     *
+     * @return  mixed                                   if a rule is found, it
+     *                                                  will return the rule
+     *                                                  object. Otherwise, it
+     *                                                  will return false
+     */
+    _findWhere( key, value )
     {
         var len = this._rules.length;
         var i;
@@ -174,7 +253,7 @@ class FlowGenerator
         for ( i = 0; i < len; i++ )
         {
             existingValue = this._rules[i][key];
-            if ( existingValue === val && existingValue !== null )
+            if ( existingValue === value && existingValue !== null )
             {
                 return this._rules[i];
             }
