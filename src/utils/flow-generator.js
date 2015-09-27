@@ -132,28 +132,28 @@ class FlowGenerator
     {
         if ( ! string )
         {
-            throw ( 109 );
+            throw new Error( 109 );
         }
 
         var match = string.match( /\((.+|)\)(.+)?\{(.+)\}/ );
 
         if ( ! match )
         {
-            throw ( 109 );
+            throw new Error( 109 );
         }
 
         var argument = match[1];
 
         if ( ! argument )
         {
-            throw ( 110 );
+            throw new Error( 110 );
         }
 
         var body = match[3];
 
         if ( ! body )
         {
-            throw ( 111 );
+            throw new Error( 111 );
         }
 
         return Function( argument.trim(), body.trim() );
