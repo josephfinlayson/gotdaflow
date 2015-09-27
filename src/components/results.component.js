@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Glyphicon} from 'react-bootstrap';
 
 export default React.createClass(
 {
@@ -10,9 +10,17 @@ export default React.createClass(
 
     render()
     {
+        var style;
+        var glyph;
         var results = this.props.results.map( ( result, i ) =>
         {
-            return <ListGroupItem key={i}>{result}</ListGroupItem>
+            style = result.passed ? "success" : "warning";
+            glyph = result.passed ?  <Glyphicon glyph="ok" /> : <Glyphicon glyph="remove" />;
+            return (
+                <ListGroupItem bsStyle={style} key={i}>
+                    {glyph} Rule #{result.id} {result.title}
+                </ListGroupItem>
+                );
         } );
 
         return (
