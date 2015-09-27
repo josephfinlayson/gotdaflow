@@ -91,7 +91,8 @@ class FlowGenerator
             results.push(
             {
                 title  : ruleToExecute.title,
-                passed : result
+                passed : result,
+                id     : ruleToExecute.id
             } );
 
             // If the rule returned true, set the next rule to execute as the

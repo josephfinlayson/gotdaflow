@@ -111,16 +111,22 @@ describe( 'Flow Generator', () =>
             expect( results ).to.be.have.length( 6 );
             expect( results[0].title ).to.be.equal( 'Checking if candidate has JS skills' );
             expect( results[0].passed ).to.be.equal( true );
+            expect( results[0].id ).to.be.equal( '20' );
             expect( results[1].title ).to.be.equal( 'Checking if candidate has Backbone skills' );
             expect( results[1].passed ).to.be.equal( true );
+            expect( results[1].id ).to.be.equal( '654' );
             expect( results[2].title ).to.be.equal( 'Checking if candidate has Angular skills' );
             expect( results[2].passed ).to.be.equal( false );
+            expect( results[2].id ).to.be.equal( '233' );
             expect( results[3].title ).to.be.equal( 'Checking if candidate is kind' );
             expect( results[3].passed ).to.be.equal( true );
+            expect( results[3].id ).to.be.equal( '2347' );
             expect( results[4].title ).to.be.equal( 'Checking if candidate is an idiot' );
             expect( results[4].passed ).to.be.equal( false );
+            expect( results[4].id ).to.be.equal( '666' );
             expect( results[5].title ).to.be.equal( 'Checking if candidate is cool' );
             expect( results[5].passed ).to.be.equal( false );
+            expect( results[5].id ).to.be.equal( '1' );
 
         } );
     } );
