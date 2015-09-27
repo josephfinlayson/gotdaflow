@@ -1,6 +1,6 @@
 import React from 'react';
 import {addRule} from '../action-creators';
-import {Alert, Input, ButtonInput} from 'react-bootstrap';
+import {Alert, Input, ButtonInput, Collapse} from 'react-bootstrap';
 import {errors} from '../constants/constants';
 
 export default React.createClass(
@@ -127,13 +127,17 @@ export default React.createClass(
      */
     render()
     {
-        var displayAlert = this.state.error ? <Alert bsStyle="danger">{errors[this.state.error]}</Alert> : false;
+
 
         return (
             <div className="row">
                 <div className="col-md-12">
                     <h2 className="page-header">Step 1: Create a new rule! <small>Don't be shy!</small></h2>
-                    {displayAlert}
+            <Collapse in={this.state.error !== false }>
+                <div>
+                    <Alert bsStyle="danger">{errors[this.state.error]}</Alert>
+                </div>
+            </Collapse>
                     <form>
                         <Input onChange={this._onChange} type="text" name="id" label="Rule id" placeholder="e.g. 12" value={this.state.id} />
                         <Input onChange={this._onChange} type="text" name="title" label="Rule title" placeholder="e.g. Check if the data is relly there" value={this.state.title} />
