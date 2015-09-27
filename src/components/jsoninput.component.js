@@ -17,7 +17,7 @@ function isJson( string )
 {
     try
     {
-        JSON.parse(str);
+        JSON.parse( string );
     }
     catch ( e )
     {
@@ -114,7 +114,10 @@ export default React.createClass(
      */
     render()
     {
-        var buttonDisabled = this.props.rules.length < 1 || this.state.json.length < 1;
+        var json = this.state.json;
+
+        var buttonDisabled = ( this.props.rules.length < 1 || json.length < 1
+            || ! isJson( json ) );
 
         return (
             <div className="row">
@@ -124,6 +127,7 @@ export default React.createClass(
         	        <Input
                         onChange={this._onChange}
                         type="textarea"
+                        value={json}
                         label="Data"
                         help="Must be avalid JSON string"
                         ref="json"
