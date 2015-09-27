@@ -10,6 +10,11 @@ export default React.createClass(
 {
 
 
+    /**
+     * Creates the initial state of the component
+     *
+     * @return  obj                                     component state
+     */
     getInitialState()
     {
         return {
@@ -18,18 +23,34 @@ export default React.createClass(
     },
 
 
+    /**
+     * Binds a change listener to the flow store so the component will update
+     * when the store emits a change event
+     *
+     * @return  void
+     */
     componentDidMount()
     {
         FlowStore.addChangeListener( this._onChange );
     },
 
 
+    /**
+     * Updates the state of the application when the flow store emits a change
+     *
+     * @return  void
+     */
     _onChange()
     {
         this.setState( this.getInitialState() );
     },
     
 
+    /**
+     * Renders the component
+     *
+     * @return  JSX                                     component markup
+     */
     render()
     {   
         var rules        = this.state.flow.rules.getRules();
