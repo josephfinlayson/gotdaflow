@@ -31,12 +31,7 @@ export default React.createClass(
                         <code>{ruleInfo.body}</code>
                     </ListGroupItem>
     },
-
-    _onResetClick()
-    {
-        resetRules();
-    },
-
+    
 
     /**
      * Renders the component
@@ -54,7 +49,7 @@ export default React.createClass(
         var resetButton = rules.length
                             ?  <ButtonInput
                                     type="submit"
-                                    onClick={this._onResetClick}value="reset"
+                                    onClick={resetRules}value="reset"
                                     bsSize="large" />
                             : false;
         return (

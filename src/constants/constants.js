@@ -4,9 +4,10 @@ export default
 
     actionTypes :
     {
-        ADD_RULE     : 'ADD_RULE',
-        EXECUTE_FLOW : 'EXECUTE_FLOW',
-        RESET_RULES  : 'RESET_RULES'
+        ADD_RULE      : 'ADD_RULE',
+        EXECUTE_FLOW  : 'EXECUTE_FLOW',
+        RESET_RULES   : 'RESET_RULES',
+        RESET_RESULTS : 'RESET_RESULTS'
     },
 
     errors:

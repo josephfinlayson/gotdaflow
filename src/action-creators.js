@@ -1,7 +1,9 @@
 var dispatcher = require('./dispatcher/');
 var {actionTypes} = require('./constants/constants');
 
-module.exports = {
+module.exports =
+{
+
 
     addRule : function( rule )
     {
@@ -18,7 +20,7 @@ module.exports = {
         {
             type : actionTypes.EXECUTE_FLOW,
             json : json
-        } )
+        } );
     },
 
     resetRules : function()
@@ -26,7 +28,15 @@ module.exports = {
         dispatcher.dispatch(
         {
              type : actionTypes.RESET_RULES
-        })
+        } );
+    },
+
+    resetResults : function()
+    {
+        dispatcher.dispatch(
+        {
+             type : actionTypes.RESET_RESULTS
+        } );
     }
 
 

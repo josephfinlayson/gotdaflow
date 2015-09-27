@@ -1,5 +1,6 @@
 import React from 'react';
-import {ListGroup, ListGroupItem, Glyphicon} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Glyphicon, ButtonInput} from 'react-bootstrap';
+import {resetResults} from '../action-creators';
 
 export default React.createClass(
 {
@@ -41,13 +42,18 @@ export default React.createClass(
      */
     render()
     {
-        var results = this.props.results.map( this._getResult );
-
+        var results     = this.props.results.map( this._getResult );
+        var resetButton = false;
         // If there are any results, let's also show the "end" results which
         // lets the user know the flow has ended
         if ( results.length )
         {
             results.push( <ListGroupItem key='end'>This is the end. My only friend. The end</ListGroupItem> )   
+            resetButton = ( <ButtonInput
+                                type="submit"
+                                onClick={resetResults}value="reset"
+                                bsSize="large" />
+                            );
         }
 
         return (
@@ -57,6 +63,7 @@ export default React.createClass(
                     <ListGroup>
                         {results}
                     </ListGroup>
+                    {resetButton}
                 </div>
             </div>
         );
