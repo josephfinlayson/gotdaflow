@@ -68,6 +68,17 @@ class FlowGenerator
 
 
     /**
+     * Empties the all the rules stored in the flow
+     *
+     * @return  void
+     */
+    resetRules()
+    {
+        this._rules = [];
+    }
+
+
+    /**
      * Executes the rules in the flow on the supplied JSON string
      *
      * @param   str                 JSON                JSON string

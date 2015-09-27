@@ -43,6 +43,15 @@ describe( 'Flow Generator', () =>
             expect( rules[0].trueResultId ).to.be.equal( '2' );
             expect( rules[0].falseResultId ).to.be.equal( '3' );
         } );
+
+        it( 'Resets the rules stored in the generator', () =>
+        {
+            expect( flowgenerator.getRules() ).to.be.an( 'array' );
+            expect( flowgenerator.getRules() ).to.have.length( 1 );
+            flowgenerator.resetRules();
+            expect( flowgenerator.getRules() ).to.be.an( 'array' );
+            expect( flowgenerator.getRules() ).to.have.length( 0 );
+        } );
     } );
 
 
@@ -141,6 +150,7 @@ describe( 'Flow Generator', () =>
             expect( createdFunction( {ofir : 'cool'} ) ).to.be.true;
         } );
     } );
+
 
     describe( 'Validation', () =>
     {
