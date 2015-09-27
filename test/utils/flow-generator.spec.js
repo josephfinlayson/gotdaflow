@@ -108,15 +108,19 @@ describe( 'Flow Generator', () =>
 
             var results = flowgenerator.execute( sampleJSON );
             expect( results ).to.be.an( 'array' );
-            expect( results ).to.be.have.length( 8 );
-            expect( results[0] ).to.be.equal( 'start' );
-            expect( results[1] ).to.be.equal( 'Checking if candidate has JS skills | passed' );
-            expect( results[2] ).to.be.equal( 'Checking if candidate has Backbone skills | passed' );
-            expect( results[3] ).to.be.equal( 'Checking if candidate has Angular skills | failed' );
-            expect( results[4] ).to.be.equal( 'Checking if candidate is kind | passed' );
-            expect( results[5] ).to.be.equal( 'Checking if candidate is an idiot | failed' );
-            expect( results[6] ).to.be.equal( 'Checking if candidate is cool | failed' );
-            expect( results[7] ).to.be.equal( 'end' );
+            expect( results ).to.be.have.length( 6 );
+            expect( results[0].title ).to.be.equal( 'Checking if candidate has JS skills' );
+            expect( results[0].passed ).to.be.equal( true );
+            expect( results[1].title ).to.be.equal( 'Checking if candidate has Backbone skills' );
+            expect( results[1].passed ).to.be.equal( true );
+            expect( results[2].title ).to.be.equal( 'Checking if candidate has Angular skills' );
+            expect( results[2].passed ).to.be.equal( false );
+            expect( results[3].title ).to.be.equal( 'Checking if candidate is kind' );
+            expect( results[3].passed ).to.be.equal( true );
+            expect( results[4].title ).to.be.equal( 'Checking if candidate is an idiot' );
+            expect( results[4].passed ).to.be.equal( false );
+            expect( results[5].title ).to.be.equal( 'Checking if candidate is cool' );
+            expect( results[5].passed ).to.be.equal( false );
 
         } );
     } );

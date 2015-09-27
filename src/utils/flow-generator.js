@@ -76,8 +76,9 @@ class FlowGenerator
      */
     execute( JSON )
     {
-        var results = ['start'];
+        var results = [];
         var rules   = this._rules;
+        var result;
 
         // First rule to execute is always the first one
         var ruleToExecute = rules[0];
@@ -85,24 +86,27 @@ class FlowGenerator
         // As long as there are rules to execute...
         while ( ruleToExecute )
         {
-            // Execute the rule, and if it is true, register the passed message
-            // and set the next rule to execute as the one with the true result
-            // id of the current rule
-            if ( ruleToExecute.bodyFunction( JSON ) === true )
+            result = ruleToExecute.bodyFunction( JSON );
+
+            results.push(
             {
-                results.push( ruleToExecute.title + ' | passed' );
+                title  : ruleToExecute.title,
+                passed : result
+            } );
+
+            // If the rule returned true, set the next rule to execute as the
+            // one with the true result id of the current rule
+            if ( result )
+            {
                 ruleToExecute = this._findWhere( 'id', ruleToExecute.trueResultId );
             }
-            // Else, register the failed message and set the next rule to
-            // execute as the one with the false result id of the current rule
+            // Else, set the next rule to execute as the one with the false
+            // result id of the current rule
             else
             {
-                results.push( ruleToExecute.title + ' | failed' );
                 ruleToExecute = this._findWhere( 'id', ruleToExecute.falseResultId );
             }
         }
-
-        results.push( 'end' );
 
         return results;
     }
