@@ -269,7 +269,8 @@ class FlowGenerator
         for ( i = 0; i < len; i++ )
         {
             existingValue = this._rules[i][key];
-            if ( existingValue === value && existingValue !== null )
+
+            if ( existingValue && existingValue === value)
             {
                 return this._rules[i];
             }

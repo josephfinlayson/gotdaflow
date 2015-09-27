@@ -165,12 +165,37 @@ describe( 'Flow Generator', () =>
             falseResultId : '22'
         } );
 
+        flowgenerator.addRule(
+        {
+            id    : '2',
+            title : 'my Second rule',
+            body  : '( data ) => { if ( 0 < 1 ) return true }'
+        } );
+
+        flowgenerator.addRule(
+        {
+            id    : '3',
+            title : 'my third rule',
+            body  : '( data ) => { if ( 0 < 1 ) return true }'
+        } );
 
         it( 'Checks if a rule with the supplied key-value pair already exists in the flow and returns it if so', () =>
         {
             expect( flowgenerator._findWhere( 'id', '1' ) ).to.be.truthy;
             expect( flowgenerator._findWhere( 'title', 'My Neverending Rule' ) ).to.be.false;
             expect( flowgenerator._findWhere( 'favouriteFood', 'Hummus' ) ).to.be.false;
+            expect( flowgenerator._findWhere( 'falseResultId', null) ).to.be.false;
+        } );
+
+        flowgenerator = new FlowGenerator();
+
+        flowgenerator.addRule(
+        {
+            id            : '1',
+            title         : 'My First Rule',
+            body          : '( data ) => { if ( 0 < 1 ) return true }',
+            trueResultId  : '5',
+            falseResultId : '22'
         } );
 
         it( 'Throwing an exception if an id already exists', () =>
@@ -289,6 +314,30 @@ describe( 'Flow Generator', () =>
             expect( () => { flowgenerator._validateRule( badRule3 ) } ).to.throw( 107 );
             var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
             expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.not.throw();
+        } );
+
+        xit( 'Compares only strings as rule ids', () => 
+        {
+            var flowgenerator = new FlowGenerator();
+            flowgenerator.addRule(
+            {
+                id    : '1',
+                title : 'Rule with no falseResultId',
+                body  : '(data)=>{return data !== false}'
+            } );
+
+            flowgenerator.addRule(
+            {
+                id    : '2',
+                title : 'Another Rule with no falseResultId',
+                body  : '(data)=>{return data !== false}'
+            } );
+
+            var firstRuleFalseResultId = flowgenerator.getRules()[0].falseResultId;
+
+            console.log( firstRuleFalseResultId );
+
+            // flowgenerator._findWhere( 'falseResultId', )
         } );
     } );
 });
