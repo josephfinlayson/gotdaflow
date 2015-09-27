@@ -119,6 +119,13 @@ export default React.createClass(
         }
     },
 
+    _onResetClick( e )
+    {
+        e.preventDefault();
+
+        this.setState( this.getInitialState() );
+    },
+
 
     /**
      * Renders the component
@@ -144,7 +151,8 @@ export default React.createClass(
                         <Input onChange={this._onChange} type="textarea" name="body" label="Rule body" placeholder="e.g. function( data ) { returns data !== false }" value={this.state.body} />
                         <Input onChange={this._onChange} type="text" name="trueResultId" label="If result is true - go to this rule" placeholder="e.g. 233" value={this.state.trueResultId} />
                         <Input onChange={this._onChange} type="text" name="falseResultId" label="if result is false - go to that rule" placeholder="e.g. 342" value={this.state.falseResultId} />
-                        <ButtonInput disabled={this.state.disabled} type="submit" onClick={this._onAddClick}value="Add the rule!" bsSize="large" />
+                        <ButtonInput wrapperClassName="pull-left" disabled={this.state.disabled} type="submit" onClick={this._onAddClick}value="Add the rule!" bsSize="large" />
+                        <ButtonInput wrapperClassName="pull-left" type="submit" onClick={this._onResetClick}value="reset" bsSize="large" />
                     </form>
                 </div>
             </div>
