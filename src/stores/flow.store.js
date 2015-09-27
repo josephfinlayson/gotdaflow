@@ -7,9 +7,7 @@ var _flow =
 {
     title      : '',
     rules      : new FlowGenerator(),
-    error      : null,
-    results    : [],
-    editedRule : {}
+    results    : []
 }
 
 class FlowStore extends EventEmitter
@@ -22,11 +20,6 @@ class FlowStore extends EventEmitter
     getFlow()
     {
         return _flow;;
-    }
-
-    resetError()
-    {
-        _flow.error = null;
     }
 
     emitChange()
@@ -56,15 +49,8 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
     {
         case actionTypes.ADD_RULE:
             var rule = payload.rule;
-            // flowStore.resetError();
             _flow.rules.addRule( rule );
-            // try {
-            //     _flow.rules.addRule( rule )
-            //     flowStore.emitChange();
-            // } catch( e ) {
-            //     _flow.error = e.message;
-            //     flowStore.emitChange();
-            // }
+            flowStore.emitChange();
         break;
 
         case actionTypes.EXECUTE_FLOW:
