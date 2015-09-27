@@ -10,13 +10,6 @@ var _flow =
     results    : []
 }
 
-_flow.rules.addRule(
-{
-    id : '1',
-    title : 'Check if data is supplied',
-    body : 'function(data){ return typeof data !== "undefined" }'
-} );
-
 class FlowStore extends EventEmitter
 {
     constructor()
