@@ -36,8 +36,6 @@ export default React.createClass(
             falseResultId : '',
             error         : false,
             disabled      : true
-
-
         }
     },
 
