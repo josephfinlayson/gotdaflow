@@ -16,7 +16,7 @@ export default React.createClass(
 
 
     /**
-     * Gets the markup to render for a rule
+     * Gets the markup to render for a single rule
      *
      * @param   obj                 ruleInfo            rule information
      *
