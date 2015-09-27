@@ -1,7 +1,6 @@
 import React from 'react';
 import {executeFlow} from '../action-creators';
 import {Input, ButtonInput} from 'react-bootstrap';
-import Rules from './rules.component';
 
 
 /**
@@ -122,8 +121,7 @@ export default React.createClass(
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <h2 className="page-header">Step 2: data <small>Enter the data to execute the rules on</small></h2>
-                    <Rules rules={this.props.rules} />
+                    <h2 className="page-header">Step 3: data <small>Enter the data to execute the rules on</small></h2>
         	        <Input
                         onChange={this._onChange}
                         type="textarea"

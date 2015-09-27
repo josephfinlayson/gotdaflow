@@ -19,6 +19,14 @@ module.exports = {
             type : actionTypes.EXECUTE_FLOW,
             json : json
         } )
+    },
+
+    resetRules : function()
+    {
+        dispatcher.dispatch(
+        {
+             type : actionTypes.RESET_RULES
+        })
     }
 
 

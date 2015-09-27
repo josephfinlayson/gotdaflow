@@ -1,6 +1,7 @@
 import React from 'react';
 import FlowStore from '../stores/flow.store';
 import RuleForm from './ruleform.component';
+import RulesList from './rules.component';
 import JsonInput from './jsoninput.component';
 import Results from './results.component';
 import {Navbar} from 'react-bootstrap';
@@ -60,7 +61,8 @@ export default React.createClass(
             <div className="container">
                 <Navbar brand="Got Da Flow"/>
                 <RuleForm error={this.state.flow.error}/>
-                <JsonInput rules={rules}/>
+                <RulesList rules={rules} />
+                <JsonInput rules={rules} />
                 <Results results={results} />
             </div>
         )

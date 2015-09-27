@@ -1,5 +1,6 @@
 import React from 'react';
-import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Well, ButtonInput} from 'react-bootstrap';
+import {resetRules} from '../action-creators';
 
 export default React.createClass(
 {
@@ -31,6 +32,11 @@ export default React.createClass(
                     </ListGroupItem>
     },
 
+    _onResetClick()
+    {
+        resetRules();
+    },
+
 
     /**
      * Renders the component
@@ -39,15 +45,24 @@ export default React.createClass(
      */
     render()
     {
-        var rules = this.props.rules.map( this._getRule );
+        var rules       = this.props.rules.map( this._getRule );
 
+        var content     = rules.length
+                            ? <ListGroup>{rules}</ListGroup>
+                            : <Well>No rules yet...</Well>;
+
+        var resetButton = rules.length
+                            ?  <ButtonInput
+                                    type="submit"
+                                    onClick={this._onResetClick}value="reset"
+                                    bsSize="large" />
+                            : false;
         return (
             <div className="row">
-                <div className="md-col-12">
-                    <h3>The rules that will be executed:</h3>
-                    <ListGroup>
-                        {rules}
-                    </ListGroup>
+                <div className="col-md-12">
+                    <h2 className="page-header">Step 2: Rules <small>Check out the rules that re gonna be executed</small></h2>
+                    {content}
+                    {resetButton}
                 </div>
             </div>
         );

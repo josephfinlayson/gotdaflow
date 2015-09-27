@@ -53,7 +53,7 @@ export default React.createClass(
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <h2 className="page-header">Step 3: Results <small>They will show after you execute...</small></h2>
+                    <h2 className="page-header">Step 4: Results <small>They will show after you execute...</small></h2>
                     <ListGroup>
                         {results}
                     </ListGroup>

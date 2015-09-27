@@ -97,6 +97,11 @@ FlowStore.dispatchToken = Dispatcher.register( function( payload )
             flowStore.emitChange();
         break;
 
+        case actionTypes.RESET_RULES:
+            _flow.rules.resetRules();
+            flowStore.emitChange();
+        break;
+
         default:
     }
 
