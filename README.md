@@ -6,7 +6,7 @@ The coolest JS flow generator in town
 
 1. `npm install`
 2. `gulp build`
-3. open '/index.html' in the browser
+3. open `/index.html` in the browser
 
 ### Development
 
