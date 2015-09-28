@@ -315,29 +315,5 @@ describe( 'Flow Generator', () =>
             var badRule4 = { id : '23', title : 'My First Rule', body : '(data) => {}' };
             expect( () => { flowgenerator._validateRule( badRule4 ) } ).to.not.throw();
         } );
-
-        xit( 'Compares only strings as rule ids', () => 
-        {
-            var flowgenerator = new FlowGenerator();
-            flowgenerator.addRule(
-            {
-                id    : '1',
-                title : 'Rule with no falseResultId',
-                body  : '(data)=>{return data !== false}'
-            } );
-
-            flowgenerator.addRule(
-            {
-                id    : '2',
-                title : 'Another Rule with no falseResultId',
-                body  : '(data)=>{return data !== false}'
-            } );
-
-            var firstRuleFalseResultId = flowgenerator.getRules()[0].falseResultId;
-
-            console.log( firstRuleFalseResultId );
-
-            // flowgenerator._findWhere( 'falseResultId', )
-        } );
     } );
 });
